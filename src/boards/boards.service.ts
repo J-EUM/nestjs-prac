@@ -13,7 +13,7 @@ export class BoardsService {
 
     createBoard(createBoardDto: CreateBoardDto) {
         const { title, description } = createBoardDto;
-        
+
         const board: Board = {
             id: uuid(),
             title, // title: title
@@ -23,5 +23,9 @@ export class BoardsService {
 
         this.boards.push(board);
         return board; // 지금 생긴 게시물 정보를 리턴
+    }
+
+    getBoardById(id: string): Board{
+        return this.boards.find((board) => board.id === id);
     }
 }
