@@ -25,7 +25,7 @@ export class BoardsService {
         return board; // 지금 생긴 게시물 정보를 리턴
     }
 
-    getBoardById(id: string): Board{
+    getBoardById(id: string): Board {
         return this.boards.find((board) => board.id === id);
     }
 
@@ -33,4 +33,11 @@ export class BoardsService {
         this.boards = this.boards.filter((board) => board.id !== id);
         // filter: 조건에 맞는것만 남기는거
     }
+
+    updateBoardStatus(id: string, status: BoardStatus ): Board {
+        const board = this.getBoardById(id);
+        board.status = status;
+        return board
+    }
+
 }
