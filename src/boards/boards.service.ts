@@ -28,4 +28,9 @@ export class BoardsService {
     getBoardById(id: string): Board{
         return this.boards.find((board) => board.id === id);
     }
+
+    deleteBoard(id: string): void {
+        this.boards = this.boards.filter((board) => board.id !== id);
+        // filter: 조건에 맞는것만 남기는거
+    }
 }
