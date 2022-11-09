@@ -13,7 +13,9 @@ export class BoardsService {
     constructor(
         @InjectRepository(Board) 
         private boardRepository: BoardRepository,
-    ) {}
+    ) {
+        this.boardRepository = boardRepository;
+    }
 
     // getAllBoards(): Board[] {
     //     return this.boards;
@@ -33,7 +35,8 @@ export class BoardsService {
     //     return board; // 지금 생긴 게시물 정보를 리턴
     // }
 
-    async createBoard(createBoardDto: CreateBoardDto): Promise <Board> {
+    async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
+        //return await this.boardRepository.createBoard(createBoardDto);
         const {title, description} = createBoardDto;
         const board = this.boardRepository.create({
             title,
@@ -45,7 +48,7 @@ export class BoardsService {
     }
 
     async getBoardById(id: number): Promise <Board> {
-        const found = await this.boardRepository.findOne(id);
+        const found = await this.boardRepository.findOne({where: {id: id}});
 
         if(!found) {
             throw new NotFoundException(`Can't find board with id ${id}`);
