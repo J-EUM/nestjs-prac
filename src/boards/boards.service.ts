@@ -75,6 +75,15 @@ export class BoardsService {
     //     // filter: 조건에 맞는것만 남기는거
     // }
 
+    async updateBoardStatus(id: number, status: BoardStatus): Promise<Board>{
+        const board = await this.getBoardById(id);
+
+        board.status = status;
+        await this.boardRepository.save(board);
+
+        return board;
+    }
+
     // updateBoardStatus(id: string, status: BoardStatus ): Board {
     //     const board = this.getBoardById(id);
     //     board.status = status;
