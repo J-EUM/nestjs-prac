@@ -17,6 +17,10 @@ export class BoardsService {
         this.boardRepository = boardRepository;
     }
 
+    async getAllBoards(): Promise<Board[]> {
+        return await this.boardRepository.find(); //find에 조건이 없으면 모두찾음
+    }
+
     // getAllBoards(): Board[] {
     //     return this.boards;
     // }
